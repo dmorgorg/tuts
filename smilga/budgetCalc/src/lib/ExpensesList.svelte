@@ -4,6 +4,7 @@
     import { identity } from "svelte/internal";
 
     export let expenses = [];
+    export let removeExpense;
 </script>
 
 <section>
@@ -11,7 +12,7 @@
     <ul>
         {#each expenses as expense, index}
         <!-- destructure expense to id, name, amount -->
-            <li><Expense {...expense}/></li>
+            <li><Expense {...expense} {removeExpense} /></li>
         {:else}
             <h2>currently no expenses</h2>
         {/each}

@@ -12,7 +12,7 @@
             <!-- destructure expense to id, name, amount -->
             <li><Expense {...expense} /></li>
         {:else}
-            <h2>currently no expenses</h2>
+            <h2>Currently, you have no expenses</h2>
         {/each}
     </ul>
 </section>

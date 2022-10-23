@@ -1,14 +1,20 @@
 <script>
+    // import Expense from "./Expense.svelte";
     import Title from "./Title.svelte";
     export let addExpense;
 
-    let name = "";
-    let amount = null;
-    // $: console.log({name, amount})
+    export let name = "";
+    export let amount = null;
+    export let isEditing;
+    export let editExpense;
     $: isEmpty = !name || !amount;
 
     function handleSubmit() {
-        addExpense({ name, amount });
+        if (isEditing) {
+            editExpense({ name, amount });
+        } else {
+            addExpense({ name, amount });
+        }
         name = "";
         amount = null;
     }
@@ -32,8 +38,14 @@
             type="submit"
             disabled={isEmpty}
             class="btn btn-block"
-            class:disabled={isEmpty}>add expense</button
+            class:disabled={isEmpty}
         >
+            {#if isEditing}
+                edit expense
+            {:else}
+                add expense
+            {/if}
+        </button>
         <button type="button" class="close-btn">
             <i class="fas fa-times" />close
         </button>
